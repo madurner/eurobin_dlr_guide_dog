@@ -1,4 +1,5 @@
 import os
+import pdb
 from datetime import datetime
 import time
 import subprocess
@@ -8,7 +9,7 @@ import argparse
 
 
 class GuideDogListener:
-    def __init__(self, local_repo_path):
+    def __init__(self, local_repo_path, token):
         self.LOCAL_REPO_PATH = local_repo_path
         self.REPO_URL = 'https://github.com/madurner/eurobin_dlr_guide_dog.git'
         # Configure the repository details
@@ -16,7 +17,7 @@ class GuideDogListener:
         self.BRANCH_NAME = 'main'  # Or the relevant branch name
         self.GITHUB_API_URL_CT = 'https://api.github.com/repos/madurner/eurobin_dlr_guide_dog/contents'
         self.GITHUB_API_URL_CM = 'https://api.github.com/repos/madurner/eurobin_dlr_guide_dog/commits'
-        self.GITHUB_TOKEN = ''  # Personal access token
+        self.GITHUB_TOKEN = token  # Personal access token
         self.ignored_repo_files = [ "vision2eurobin_names.yaml", "guide_dog.png", "pull.txt", "test_pose.txt"]
         
     # Check for new files added in the repository
@@ -42,7 +43,8 @@ class GuideDogListener:
             response = requests.get(self.GITHUB_API_URL_CT, headers=headers)
             commits = response.json()
             new_files = [commits[-1].get('name')][0]
-            if all([new_file not in self.ignored_repo_files for new_file in new_files]):
+            print(f"new files {new_files}")
+            if all([new_file in self.ignored_repo_files for new_file in new_files]):
                 return True, []
             return False, new_files
         return True, []
@@ -50,6 +52,8 @@ class GuideDogListener:
     # Pull changes from the repository
     def pull_changes(self):
         repo = Repo(self.LOCAL_REPO_PATH)
+        import pdb
+        pdb.set_trace()
         origin = repo.remotes.origin
         origin.pull(self.BRANCH_NAME)
 
