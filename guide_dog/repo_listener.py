@@ -17,6 +17,7 @@ class GuideDogListener:
         self.GITHUB_API_URL_CT = 'https://api.github.com/repos/madurner/eurobin_dlr_guide_dog/contents'
         self.GITHUB_API_URL_CM = 'https://api.github.com/repos/madurner/eurobin_dlr_guide_dog/commits'
         self.GITHUB_TOKEN = ''  # Personal access token
+        self.ignored_repo_files = [ "vision2eurobin_names.yaml", "guide_dog.png", "pull.txt", "test_pose.txt"]
         
     # Check for new files added in the repository
     def check_for_new_files(self):
@@ -25,20 +26,24 @@ class GuideDogListener:
         commits = response.json()
         latest_cm = commits[0]['commit']['committer']['date'] 
         latest_remote_cm_date = datetime.fromisoformat(latest_cm.replace('Z', '+00:00'))
+        print(latest_remote_cm_date)
         
         # Get the latest local commit
         repo = Repo(self.LOCAL_REPO_PATH)
         latest_commit = repo.head.commit
 
         commit_date = latest_commit.committed_datetime
-        latest_local_cm_date = datetime.fromisoformat(str(commit_date))       
+        latest_local_cm_date = datetime.fromisoformat(str(commit_date))
+        print(latest_local_cm_date)
 
         # Check the most recent commit for new files
         if max(latest_remote_cm_date, latest_local_cm_date) == latest_remote_cm_date:
-            import pdb
+
             response = requests.get(self.GITHUB_API_URL_CT, headers=headers)
             commits = response.json()
             new_files = [commits[-1].get('name')][0]
+            if all([new_file not in self.ignored_repo_files for new_file in new_files]):
+                return True, []
             return False, new_files
         return True, []
 
