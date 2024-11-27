@@ -52,8 +52,6 @@ class GuideDogListener:
     # Pull changes from the repository
     def pull_changes(self):
         repo = Repo(self.LOCAL_REPO_PATH)
-        import pdb
-        pdb.set_trace()
         origin = repo.remotes.origin
         origin.pull(self.BRANCH_NAME)
 
