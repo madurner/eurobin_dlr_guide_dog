@@ -10,11 +10,12 @@ import argparse
 class GuideDogListener:
     def __init__(self, local_repo_path):
         self.LOCAL_REPO_PATH = local_repo_path
-        self.REPO_URL = 'https://github.com/madurner/eurobin_dlr_guide_dog.git'  # Change to your repo
+        self.REPO_URL = 'https://github.com/madurner/eurobin_dlr_guide_dog.git'
         # Configure the repository details
-        self.LOCAL_REPO_PATH = args.local_repo_path  # Path to the local repo
+        self.LOCAL_REPO_PATH = local_repo_path  # Path to the local repo
         self.BRANCH_NAME = 'main'  # Or the relevant branch name
-        self.GITHUB_API_URL_CM = 'https://api.github.com/repos/madurner/eurobin_dlr_guide_dog/commits'  # Change to your repo
+        self.GITHUB_API_URL_CT = 'https://api.github.com/repos/madurner/eurobin_dlr_guide_dog/contents'
+        self.GITHUB_API_URL_CM = 'https://api.github.com/repos/madurner/eurobin_dlr_guide_dog/commits'
         self.GITHUB_TOKEN = ''  # Personal access token
         
     # Check for new files added in the repository
@@ -37,7 +38,7 @@ class GuideDogListener:
             import pdb
             response = requests.get(self.GITHUB_API_URL_CT, headers=headers)
             commits = response.json()
-            new_files = [commits[-1].get('name')]
+            new_files = [commits[-1].get('name')][0]
             return False, new_files
         return True, []
 
@@ -61,12 +62,12 @@ class GuideDogListener:
         new_commits = True
         while new_commits:
             print("Woof woof! Guide dog waiting for new files...")
-            new_commits, new_files = check_for_new_files()
+            new_commits, new_files = self.check_for_new_files()
             time.sleep(2)# Wait for 1 minute before checking again
         
         print(f"Observed {new_files} being pushed")
         print("Trying to pull...")
-        pull_changes()
+        self.pull_changes()
         
         return False, new_files
 
