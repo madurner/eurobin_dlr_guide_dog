@@ -6,17 +6,17 @@ import subprocess
 import requests
 from git import Repo
 import argparse
-
+from pathlib import Path
 
 class GuideDogListener:
-    def __init__(self, local_repo_path, token):
+    def __init__(self, local_repo_path, token, dir_name):
         self.LOCAL_REPO_PATH = local_repo_path
         self.REPO_URL = 'https://github.com/madurner/eurobin_dlr_guide_dog.git'
         # Configure the repository details
         self.LOCAL_REPO_PATH = local_repo_path  # Path to the local repo
         self.BRANCH_NAME = 'main'  # Or the relevant branch name
-        self.GITHUB_API_URL_CT = 'https://api.github.com/repos/madurner/eurobin_dlr_guide_dog/contents'
-        self.GITHUB_API_URL_CM = 'https://api.github.com/repos/madurner/eurobin_dlr_guide_dog/commits'
+        self.GITHUB_API_URL_CT = 'https://api.github.com/repos/madurner/eurobin_dlr_guide_dog/contents/' + str(dir_name) + '?sort=created'
+        self.GITHUB_API_URL_CM = 'https://api.github.com/repos/madurner/eurobin_dlr_guide_dog/commits?sort=created'
         self.GITHUB_TOKEN = token  # Personal access token
         self.ignored_repo_files = [ "vision2eurobin_names.yaml", "guide_dog.png", "pull.txt", "test_pose.txt"]
         
@@ -26,8 +26,7 @@ class GuideDogListener:
         response = requests.get(self.GITHUB_API_URL_CM, headers=headers)
         commits = response.json()
         latest_cm = commits[0]['commit']['committer']['date'] 
-        latest_remote_cm_date = datetime.fromisoformat(latest_cm.replace('Z', '+00:00'))
-        print(latest_remote_cm_date)
+        latest_remote_cm_date = datetime.fromisoformat(latest_cm.replace('Z', '+01:00'))  + timedelta(hours=1)
         
         # Get the latest local commit
         repo = Repo(self.LOCAL_REPO_PATH)
@@ -35,18 +34,26 @@ class GuideDogListener:
 
         commit_date = latest_commit.committed_datetime
         latest_local_cm_date = datetime.fromisoformat(str(commit_date))
-        latest_local_cm_date = latest_local_cm_date + timedelta(hours=1)
-        print(latest_local_cm_date)
+        latest_local_cm_date = latest_local_cm_date
 
         # Check the most recent commit for new files
-        if max(latest_remote_cm_date, latest_local_cm_date) == latest_remote_cm_date:
+        if latest_remote_cm_date.replace(second=0,microsecond=0) != latest_local_cm_date.replace(second=0, microsecond=0) and max(latest_remote_cm_date.replace(second=0,microsecond=0), latest_local_cm_date.replace(second=0, microsecond=0)) == latest_remote_cm_date.replace(second=0,microsecond=0):
             response = requests.get(self.GITHUB_API_URL_CT, headers=headers)
             commits = response.json()
-            new_files = [commits[-1].get('name')][0]
-            print(f"new files {new_files}")
+            new_files = [commits[0].get('name')]
             if all([new_file in self.ignored_repo_files for new_file in new_files]):
                 return True, []
-            return False, new_files
+
+            new_file = None
+            for file_name in new_files:
+                if Path(file_name).suffix in [".png"]:
+                    new_file = file_name
+            if new_file is None:
+                print("no new png file")
+                print(f"new files {new_files}")
+                return True, []
+
+            return False, new_file
         return True, []
 
     # Pull changes from the repository
