@@ -71,14 +71,16 @@ class GuideDogListener:
         origin.push(self.BRANCH_NAME)
 
     # Main function to run the polling loop
-    def listen_for_changes(self):
+    def listen_for_changes(self, block=True):
         
         new_commits = True
         while new_commits:
             print("Woof woof! Guide dog waiting for new files...")
             new_commits, new_files = self.check_for_new_files()
             time.sleep(2)# Wait for 1 minute before checking again
-        
+            if not block:
+                return True, []
+
         print(f"Observed {new_files} being pushed")
         print("Trying to pull...")
         self.pull_changes()
