@@ -1,6 +1,6 @@
 import os
 import pdb
-from datetime import datetime
+from datetime import datetime, timedelta
 import time
 import subprocess
 import requests
@@ -35,11 +35,11 @@ class GuideDogListener:
 
         commit_date = latest_commit.committed_datetime
         latest_local_cm_date = datetime.fromisoformat(str(commit_date))
+        latest_local_cm_date = latest_local_cm_date + timedelta(hours=1)
         print(latest_local_cm_date)
 
         # Check the most recent commit for new files
         if max(latest_remote_cm_date, latest_local_cm_date) == latest_remote_cm_date:
-
             response = requests.get(self.GITHUB_API_URL_CT, headers=headers)
             commits = response.json()
             new_files = [commits[-1].get('name')][0]
@@ -86,7 +86,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     
     # listener
-    listener = GuideDogListener(args.local_repo_path)
+    listener = GuideDogListener(args.local_repo_path, )
 
     # check repo until new inference file is push to remote
     no_commits, new_files = listener.listen_for_changes()
