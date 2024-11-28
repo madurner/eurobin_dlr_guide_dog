@@ -45,6 +45,7 @@ class GuideDogListener:
                 latest_remote_cm_date.replace(second=0, microsecond=0),
                 latest_local_cm_date.replace(second=0, microsecond=0)) == latest_remote_cm_date.replace(second=0,
                                                                                                         microsecond=0):
+            print("Noticed changes")
             response = requests.get(self.GITHUB_API_URL_CT, headers=headers)
             folder_contents = response.json()
 
@@ -56,14 +57,18 @@ class GuideDogListener:
             print(f"Searching for files on local machine in {path_to_local_dir}")
             files_in_local = os.listdir(str(path_to_local_dir))
 
-            new_files = []
+            files_to_process = []
             for file_in_remote in files_in_remote:
                 if file_in_remote not in files_in_local and file_in_remote.endswith("png"):
-                    new_files.append(file_in_remote)
+                    files_to_process.append(file_in_remote)
                     print(f"Found new png file {file_in_remote}")
-            if len(new_files) == 0:
+            if files_to_process is None:
                 return True, []
-            return False, new_files
+            if len(files_to_process) == 0:
+                return True, []
+            print(f"return files to process {files_to_process}")
+            return False, files_to_process
+        return True, []
 
     # Pull changes from the repository
     def pull_changes(self):
@@ -83,18 +88,19 @@ class GuideDogListener:
     def listen_for_changes(self, block=True):
         
         new_commits = True
+        new_files_pull = []
         while new_commits:
             print("Woof woof! Guide dog waiting for new files...")
-            new_commits, new_files = self.check_for_new_files()
+            new_commits, new_files_pull = self.check_for_new_files()
             time.sleep(2)# Wait for 1 minute before checking again
             if not block:
                 return True, []
 
-        print(f"Observed {new_files} being pushed")
+        print(f"Observed {new_files_pull} being pushed")
         print("Trying to pull...")
         self.pull_changes()
 
-        return False, new_files
+        return False, new_files_pull
 
 
 # Run the listener
