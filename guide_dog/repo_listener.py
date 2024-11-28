@@ -74,7 +74,7 @@ class GuideDogListener:
     def pull_changes(self):
         repo = Repo(self.LOCAL_REPO_PATH)
         origin = repo.remotes.origin
-        origin.pull(self.BRANCH_NAME, "--rebase")
+        origin.pull(self.BRANCH_NAME, rebase=True)
 
     # Commit and push any new files
     def commit_and_push(self, commit_file):
