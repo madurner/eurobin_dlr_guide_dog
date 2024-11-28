@@ -8,26 +8,29 @@ from git import Repo
 import argparse
 from pathlib import Path
 
+
 class GuideDogListener:
     def __init__(self, local_repo_path, token, dir_name):
         self.LOCAL_REPO_PATH = local_repo_path
+        self.DIR_NAME = dir_name
         self.REPO_URL = 'https://github.com/madurner/eurobin_dlr_guide_dog.git'
         # Configure the repository details
         self.LOCAL_REPO_PATH = local_repo_path  # Path to the local repo
         self.BRANCH_NAME = 'main'  # Or the relevant branch name
-        self.GITHUB_API_URL_CT = 'https://api.github.com/repos/madurner/eurobin_dlr_guide_dog/contents/' + str(dir_name) + '?sort=created'
+        self.GITHUB_API_URL_CT = 'https://api.github.com/repos/madurner/eurobin_dlr_guide_dog/contents/' + str(
+            dir_name) + '?sort=created'
         self.GITHUB_API_URL_CM = 'https://api.github.com/repos/madurner/eurobin_dlr_guide_dog/commits?sort=created'
         self.GITHUB_TOKEN = token  # Personal access token
-        self.ignored_repo_files = [ "vision2eurobin_names.yaml", "guide_dog.png", "pull.txt", "test_pose.txt"]
-        
+        self.ignored_repo_files = ["vision2eurobin_names.yaml", "guide_dog.png", "pull.txt", "test_pose.txt"]
+
     # Check for new files added in the repository
     def check_for_new_files(self):
         headers = {'Authorization': f'token {self.GITHUB_TOKEN}'}
         response = requests.get(self.GITHUB_API_URL_CM, headers=headers)
         commits = response.json()
-        latest_cm = commits[0]['commit']['committer']['date'] 
-        latest_remote_cm_date = datetime.fromisoformat(latest_cm.replace('Z', '+01:00'))  + timedelta(hours=1)
-        
+        latest_cm = commits[0]['commit']['committer']['date']
+        latest_remote_cm_date = datetime.fromisoformat(latest_cm.replace('Z', '+01:00')) + timedelta(hours=1)
+
         # Get the latest local commit
         repo = Repo(self.LOCAL_REPO_PATH)
         latest_commit = repo.head.commit
@@ -37,24 +40,30 @@ class GuideDogListener:
         latest_local_cm_date = latest_local_cm_date
 
         # Check the most recent commit for new files
-        if latest_remote_cm_date.replace(second=0,microsecond=0) != latest_local_cm_date.replace(second=0, microsecond=0) and max(latest_remote_cm_date.replace(second=0,microsecond=0), latest_local_cm_date.replace(second=0, microsecond=0)) == latest_remote_cm_date.replace(second=0,microsecond=0):
+        if latest_remote_cm_date.replace(second=0, microsecond=0) != latest_local_cm_date.replace(second=0,
+                                                                                                  microsecond=0) and max(
+                latest_remote_cm_date.replace(second=0, microsecond=0),
+                latest_local_cm_date.replace(second=0, microsecond=0)) == latest_remote_cm_date.replace(second=0,
+                                                                                                        microsecond=0):
             response = requests.get(self.GITHUB_API_URL_CT, headers=headers)
-            commits = response.json()
-            new_files = [commits[0].get('name')]
-            if all([new_file in self.ignored_repo_files for new_file in new_files]):
-                return True, []
+            folder_contents = response.json()
 
-            new_file = None
-            for file_name in new_files:
-                if Path(file_name).suffix in [".png"]:
-                    new_file = file_name
-            if new_file is None:
-                print("no new png file")
-                print(f"new files {new_files}")
-                return True, []
+            files_in_remote = []
+            for content in folder_contents:
+                files_in_remote.append(content.get('name'))
 
-            return False, new_file
-        return True, []
+            path_to_local_dir = os.path.join(self.LOCAL_REPO_PATH, self.DIR_NAME)
+            print(f"Searching for files on local machine in {path_to_local_dir}")
+            files_in_local = os.listdir(str(path_to_local_dir))
+
+            new_files = []
+            for file_in_remote in files_in_remote:
+                if file_in_remote not in files_in_local and file_in_remote.endswith("png"):
+                    new_files.append(file_in_remote)
+                    print(f"Found new png file {file_in_remote}")
+            if len(new_files) == 0:
+                return True, []
+            return False, new_files
 
     # Pull changes from the repository
     def pull_changes(self):
@@ -84,7 +93,7 @@ class GuideDogListener:
         print(f"Observed {new_files} being pushed")
         print("Trying to pull...")
         self.pull_changes()
-        
+
         return False, new_files
 
 
@@ -93,7 +102,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--local-repo-path", type=str, help="path to local git repo")
     args = parser.parse_args()
-    
+
     # listener
     listener = GuideDogListener(args.local_repo_path, )
 
