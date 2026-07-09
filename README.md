@@ -1,16 +1,33 @@
 # euROBIN DLR Guide Dog
+
 <p align="center">
-<img src='test/guide_dog.png' width='200'>
+<img src='guide_dog.png' width='200'>
 <p>
 
-Simple and easy platform hack for image transfer in euROBIN
+Simple and easy hack for building a shared vision pipeline in euROBIN.
 
-### Setup
+## Usage
 
-1. Create a camera intrinsic file in the root directory of this repository with the same format as `dlr_camera_intrinsics.yaml` where `dlr` is replaced with your organization
-2. Create a folder with the name of your organization e.g. `dlr`
+### Install
 
-### Usage
+Please setup conda on your machine.  
+Then do:
 
-1. Push the image from your camera with the following name: `[euROBIN_name]:[some_date or identifier].png`. The euROBIN name can be obtained from the file `vision2eurobin_names`.
-2. Wait until the associated `.yaml` file with the name `[euROBIN_name]:[some_date or identifier].yaml` is created.
+```
+conda init
+conda create -n guide_dog
+conda activate guide_dog
+conda install --file requirements.txt
+```
+
+### Startup
+
+```
+./scripts/start_backend_server.sh
+```
+
+optional:
+
+```
+./scripts/start_streamlit.sh
+```
