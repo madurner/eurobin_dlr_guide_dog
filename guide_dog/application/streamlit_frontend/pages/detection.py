@@ -205,7 +205,7 @@ def manage_pcvp_pipeline():
                         st.rerun()
 
 
-@st.fragment(run_every="1s")
+@st.fragment
 def draw_image():
     r = requests.get(get_url("image"), headers={"X-Api-Key": st.session_state.api_key})
     if r.ok:
