@@ -23,8 +23,8 @@ conda install --file requirements.txt
 ### Startup
 
 ```
-cd guide_dog/
-./scripts/start_backend_server.sh
+cd guide_dog/scripts/
+.start_backend_server.sh
 ```
 
 optional:
