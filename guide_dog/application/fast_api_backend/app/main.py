@@ -43,7 +43,7 @@ async def detect_stuff(camera: Camera, image: cv2.Mat, guide_dog_server: GuideDo
         resp = guide_dog_server.get_data()
         time += 1
 
-    if timeout == time and resp is False:
+    if time >= time or resp is False:
         # handle timeout
         return {}
 
