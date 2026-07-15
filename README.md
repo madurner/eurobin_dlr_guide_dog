@@ -4,7 +4,7 @@
 <img src='guide_dog.png' width='200'>
 <p>
 
-Simple and easy hack for building a shared vision pipeline in euROBIN.
+Shared vision pipeline in euROBIN.
 
 ## Usage
 
