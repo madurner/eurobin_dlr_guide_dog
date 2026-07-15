@@ -24,7 +24,7 @@ conda install --file requirements.txt
 
 ```
 cd guide_dog/scripts/
-.start_backend_server.sh
+. start_backend_server.sh
 ```
 
 optional:
@@ -32,3 +32,9 @@ optional:
 ```
 ./scripts/start_streamlit.sh
 ```
+
+### API Documentation
+
+http://127.0.0.1:8000/docs
+
+
