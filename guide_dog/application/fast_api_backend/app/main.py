@@ -39,11 +39,12 @@ async def detect_stuff(camera: Camera, image: cv2.Mat, guide_dog_server: GuideDo
     resp = False
     timeout = 30
     time = 0
-    while resp is False and success is True and time < timeout:
+    while resp is False and success is True and time <= timeout:
         resp = guide_dog_server.get_data()
         time += 1
 
     if timeout == time and resp is False:
+        # handle timeout
         return {}
 
     return resp
@@ -162,6 +163,9 @@ async def detect(
         raise HTTPException(status_code=404, detail="No image can be found")
 
     result = await detect_stuff(camera, image.get_as_cv_image(), gdsp)
+
+    if len(result.items()) == 0:
+        raise HTTPException(status_code=408, detail="Timeout while waiting for response from detection pipeline!")
 
     detection_results = []
     for pose in result["poses"]:
