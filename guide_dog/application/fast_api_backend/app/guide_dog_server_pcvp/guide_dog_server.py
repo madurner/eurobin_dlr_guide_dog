@@ -81,7 +81,7 @@ class GuideDogServerPCVP:
                           push=False, pull=True, retries=5, dry_run=False)
 
         if len(files) == 0:
-            time.sleep(2)
+            time.sleep(1)
             return False
 
         # Received files
