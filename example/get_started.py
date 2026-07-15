@@ -24,12 +24,11 @@ import requests
 # =============================================================================
 
 BASE_URL = "http://127.0.0.1:8000"
-API_KEY = "socrob_tests"
+API_KEY = "key123"
 
 IMAGE_PATH = Path(
     #"ABSOLUTEPATH/cheezit_color_image.png"
-   "/home/schi_f0/testing/eurobin_dlr_guide_dog/guide_dog/application/fast_api_backend/app/images/cheezit_color_image.png"
-)
+   )
 
 
 # =============================================================================
