@@ -13,7 +13,7 @@ Shared vision pipeline in euROBIN.
 Please setup conda on your machine.  
 Then do:
 
-```
+```bash
 conda init
 conda create -n guide_dog
 conda activate guide_dog
@@ -22,14 +22,14 @@ conda install --file requirements.txt
 
 ### Startup
 
-```
+```bash
 cd guide_dog/scripts/
 . start_backend_server.sh
 ```
 
 optional:
 
-```
+```bash
 ./scripts/start_streamlit.sh
 ```
 
