@@ -1,1 +1,0 @@
-. "/home/reic_al/repositories/guide_dog/application/conan_env/conanbuildenv-relwithdebinfo-x86_64.sh"

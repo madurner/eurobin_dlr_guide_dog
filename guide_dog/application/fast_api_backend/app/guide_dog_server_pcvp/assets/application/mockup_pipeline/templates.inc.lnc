@@ -1,5 +1,0 @@
-process_template pcvp_module_ln(module_instance_name)
-add environment: PCVP_LN_MANAGER_ADDRESS=%(manager)
-add environment: LN_PROGRAM_NAME=%(module_instance_name)
-ready_regex: <MODULE_IS_READY_AND_CONNECTED_TO_PCVP_MANAGER>
-warning_regex: (<ERROR>)|(<FATAL>)

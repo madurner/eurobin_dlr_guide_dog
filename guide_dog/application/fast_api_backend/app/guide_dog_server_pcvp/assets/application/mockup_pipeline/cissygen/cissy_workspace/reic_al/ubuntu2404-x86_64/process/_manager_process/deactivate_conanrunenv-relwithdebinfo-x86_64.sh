@@ -1,7 +1,0 @@
-echo Restoring environment
-unset PATH
-unset PYTHONPATH
-unset LN_DAEMON_START
-unset LD_LIBRARY_PATH
-unset DYLD_LIBRARY_PATH
-unset LN_MESSAGE_DEFINITION_DIRS
