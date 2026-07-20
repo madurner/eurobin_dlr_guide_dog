@@ -38,3 +38,11 @@ optional:
 http://127.0.0.1:8000/docs
 
 
+### Example Usage
+
+Find an example how to use the pipeline in:
+
+example/get_started.py
+
+
+
