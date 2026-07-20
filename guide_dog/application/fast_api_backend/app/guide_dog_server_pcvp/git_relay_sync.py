@@ -50,6 +50,7 @@ import subprocess
 import sys
 import time
 from datetime import datetime, timezone
+from pathlib import Path
 
 DEFAULT_EXCLUDES = [".git", "__pycache__", "*.pyc", ".gitattributes", "README*", ".gitignore"]
 
@@ -212,8 +213,19 @@ def sync_once(repo, local, branch, excludes, push, pull, retries, dry_run):
     if push:
         if in_repo:
             # local IS the repo: stage everything not ignored by .gitignore.
+
+            assets = Path(repo)
+
+            files = [
+                *assets.rglob("input_image.png"),
+                *assets.rglob("intrinsic.json"),
+            ]
+
             if not dry_run:
-                git(repo, "add", "-A")
+                #git(repo, "add", "-A")
+                if files:
+                    git(repo, "add", "--", *(str(path.relative_to(assets)) for path in files))
+
             staged = git(repo, "diff", "--cached", "--name-only").stdout.splitlines()
             if dry_run:  # show would-be changes without staging
                 staged = [ln[3:] for ln in git(repo, "status", "--porcelain").stdout.splitlines()]
