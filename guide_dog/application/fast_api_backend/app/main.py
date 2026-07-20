@@ -164,8 +164,6 @@ async def detect(
     result = await detect_stuff(camera, image.get_as_cv_image(), gdsp)
 
     if len(result.items()) == 0:
-        os.chdir("../../../scripts")
-        print(f"Changed directory : {os.getcwd()}")
         raise HTTPException(status_code=408, detail="Timeout while waiting for response from detection pipeline!")
 
     detection_results = []
