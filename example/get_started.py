@@ -60,7 +60,7 @@ class SocRobClient:
         """Configure the camera intrinsics."""
 
         camera_intrinsics = {
-            "principal_point_x": 961,
+            "principal_point_x": 962,
             "principal_point_y": 530,
             "focal_length_x": 936.0,
             "focal_length_y": 936.0,
