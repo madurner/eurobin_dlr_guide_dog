@@ -1,0 +1,24 @@
+%YAML:1.2
+---
+
+map_object_to_mesh:
+  obj_000001:
+    "/volume/projects/pekdat/datasets/public/YCB_VideoDataset/original/YCB_Video_Dataset/models/002_master_chef_can/textured.obj"
+  obj_000002:
+    "/volume/projects/pekdat/datasets/public/YCB_VideoDataset/original/YCB_Video_Dataset/models/003_cracker_box/textured.obj"
+#  obj_000003:
+#    "/volume/projects/pekdat/datasets/public/YCB_VideoDataset/original/YCB_Video_Dataset/models/004_sugar_box/textured.obj"
+#  obj_000004:
+#    "/volume/projects/pekdat/datasets/public/YCB_VideoDataset/original/YCB_Video_Dataset/models/005_tomato_soup_can/textured.obj"
+#  obj_000005:
+#    "/volume/projects/pekdat/datasets/public/YCB_VideoDataset/original/YCB_Video_Dataset/models/006_mustard_bottle/textured.obj"
+#  obj_000006:
+#    "/volume/projects/pekdat/datasets/public/YCB_VideoDataset/original/YCB_Video_Dataset/models/007_tuna_fish_can/textured.obj"
+#  obj_000007:
+#    "/volume/projects/pekdat/datasets/public/YCB_VideoDataset/original/YCB_Video_Dataset/models/008_pudding_box/textured.obj"
+#  obj_000008:
+#    "/volume/projects/pekdat/datasets/public/YCB_VideoDataset/original/YCB_Video_Dataset/models/009_gelatin_box/textured.obj"
+#  obj_000009:
+#    "/volume/projects/pekdat/datasets/public/YCB_VideoDataset/original/YCB_Video_Dataset/models/010_potted_meat_can/textured.obj"
+#  obj_000010:
+#    "/volume/projects/pekdat/datasets/public/YCB_VideoDataset/original/YCB_Video_Dataset/models/011_banana/textured.obj"

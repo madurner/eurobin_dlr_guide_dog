@@ -1,0 +1,45 @@
+template flask_server_pcvp_gen
+add environment: PATH=/volume/conan_cache/reic_al/.conan2/p/b/flask089085863b1b8/p/local/bin:/volume/conan_cache/reic_al/.conan2/p/pcvp_99ff97274e5a3/p/bin:/volume/conan_cache/reic_al/.conan2/p/flask176d2c836e8b2/p/local/bin:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin
+add environment: CONAN_FLASK_PCVP_ROOT=/volume/conan_cache/reic_al/.conan2/p/b/flask089085863b1b8/p
+add environment: PYTHONPATH=/volume/conan_cache/reic_al/.conan2/p/werkz3437a2af7ed38/p/local/lib/python3.12/dist-packages:/volume/conan_cache/reic_al/.conan2/p/itsdaba157d9059f68/p/local/lib/python3.12/dist-packages:/volume/conan_cache/reic_al/.conan2/p/flask176d2c836e8b2/p/local/lib/python3.12/dist-packages:/volume/conan_cache/reic_al/.conan2/p/pcvp_eeaed569c9331/p/lib:/volume/conan_cache/reic_al/.conan2/p/b/flask089085863b1b8/p/local/lib/python3.12/dist-packages
+add environment: CONAN_PCVP_CLIENT_PY_ROOT=/volume/conan_cache/reic_al/.conan2/p/pcvp_eeaed569c9331/p
+add environment: LD_LIBRARY_PATH=/volume/conan_cache/reic_al/.conan2/p/pcvp_eeaed569c9331/p/lib:/volume/conan_cache/reic_al/.conan2/p/pcvp_4dd8aed650c95/p/lib:/volume/conan_cache/reic_al/.conan2/p/pcvp_99ff97274e5a3/p/lib:/volume/conan_cache/reic_al/.conan2/p/tclapf04bf9560c7f1/p/lib:/volume/conan_cache/reic_al/.conan2/p/liblib459dcf8618a3/p/lib:/volume/conan_cache/reic_al/.conan2/p/pcvp_bcb634da30b78/p/lib:/volume/conan_cache/reic_al/.conan2/p/log4cb6e00c6f44d7b/p/lib:/volume/conan_cache/reic_al/.conan2/p/liblib459dcf8618a3/p/lib
+add environment: DYLD_LIBRARY_PATH=/volume/conan_cache/reic_al/.conan2/p/pcvp_eeaed569c9331/p/lib:/volume/conan_cache/reic_al/.conan2/p/pcvp_4dd8aed650c95/p/lib:/volume/conan_cache/reic_al/.conan2/p/pcvp_99ff97274e5a3/p/lib:/volume/conan_cache/reic_al/.conan2/p/tclapf04bf9560c7f1/p/lib:/volume/conan_cache/reic_al/.conan2/p/liblib459dcf8618a3/p/lib:/volume/conan_cache/reic_al/.conan2/p/pcvp_bcb634da30b78/p/lib:/volume/conan_cache/reic_al/.conan2/p/log4cb6e00c6f44d7b/p/lib
+add environment: CONAN_PCVP_CLIENT_CPP_ROOT=/volume/conan_cache/reic_al/.conan2/p/pcvp_4dd8aed650c95/p
+add environment: CONAN_PCVP_PROTOCOL_ROOT=/volume/conan_cache/reic_al/.conan2/p/pcvp_99ff97274e5a3/p
+add environment: CONAN_TCLAP_ROOT=/volume/conan_cache/reic_al/.conan2/p/tclapf04bf9560c7f1/p
+add environment: CONAN_PCVP_COMMON_ROOT=/volume/conan_cache/reic_al/.conan2/p/pcvp_bcb634da30b78/p
+add environment: CONAN_PSTREAMS_ROOT=/volume/conan_cache/reic_al/.conan2/p/pstre6b62fb282e173/p
+add environment: CONAN_LOG4CXX_ROOT=/volume/conan_cache/reic_al/.conan2/p/log4cb6e00c6f44d7b/p
+add environment: CONAN_PYBIND11_OPENCV_NUMPY_ROOT=/volume/conan_cache/reic_al/.conan2/p/pybin846fb3f6916a8/p
+add environment: CONAN_FLASK_ROOT=/volume/conan_cache/reic_al/.conan2/p/flask176d2c836e8b2/p
+add environment: CONAN_ITSDANGEROUS_ROOT=/volume/conan_cache/reic_al/.conan2/p/itsdaba157d9059f68/p
+add environment: CONAN_WERKZEUG_ROOT=/volume/conan_cache/reic_al/.conan2/p/werkz3437a2af7ed38/p
+add flags: use_execvpe
+add environment: CONAN_HOME=/volume/conan_cache/reic_al/.conan2
+node: localhost
+description: [Deployed: 2026-06-19 15:45:17
+Cissy workspace process name: flask_server_pcvp
+Requirements:
+<span color="teal"><b>boost/1.83.0</b> platform</span>.
+<span color="teal"><b>eigen/3.4.0</b> platform</span>.
+<span color="teal"><b>opencv/4.3.0</b> platform</span>.
+<span color="teal"><b>opencv_python/4.3.0</b> platform</span>.
+<span color="teal"><b>pybind11/2.10.1</b> platform</span>.
+<span color="teal"><b>python3-dist/2.2.1</b> platform</span>.
+<span color="teal"><b>yaml-cpp/0.7.0</b> platform</span>.
+flask/2.2.5@pypi/stable<span color="gray">#dd25a75c73425bd37515689eb0e06437:4aa00e4c92acf416b5c630a020396821e497072a</span>
+flask_pcvp/0.10.0@semsa/unstable<span color="gray">#22a34dc59e259866b0a24f291e585890:6d5ee53ca06d1c80445b27d5fedd4ce758d45b76</span>
+itsdangerous/2.2.0@pypi/stable<span color="gray">#bea18cce2647332165f0ba8fd5670c2e:4aa00e4c92acf416b5c630a020396821e497072a</span>
+liblinks_and_nodes/2.8.2@common/stable<span color="gray">#04ee05bd07b8501eb6248a7a60cc3a9e:b65027df6dd2d08e73d58f6badbadab7aead8534</span>
+libstring_util/1.3.0@common/stable<span color="gray">#5fac0a1a038f0a81b7778145551dd5c6:84c2475eceab6188870f3b57ef6abf7c0e56fde9</span>
+log4cxx/1.2.0@3rdparty/stable<span color="gray">#08c9575ee7365260de3fd8ecf8c809ee:7d676cc7c2c54bb2b2eb42bb3d5b4725832a6428</span>
+pcvp_client_cpp/3.6.1@semsa/unstable<span color="gray">#53ed6f9c15eeaa344cae0d09db9ce531:a6c35c85822cc1e39e4d2aaaebaa07408d9b5b37</span>
+pcvp_client_py/3.6.0@semsa/unstable<span color="gray">#e845a0c48a07c205c7bed69f445248a5:0dde50fdb30937bc6fd3a70d7fbd4415de7fb0a3</span>
+pcvp_common/3.3.3@semsa/unstable<span color="gray">#8a5f3bb49a64321bed17b40ff2ee5c26:ae228cb415df9085c611974269bfb46c658b406f</span>
+pcvp_protocol/3.6.0@semsa/unstable<span color="gray">#bee94081e7b0b308a0ca72655500041d:6294238c7642db18e15ab210f355151b3c5c12c5</span>
+pstreams/1.0.3@3rdparty/unstable<span color="gray">#86cb90974af6572a2c909ec9aa4d5158:d8a4459b679be7917074a0f32e25ed3e5971eb64</span>
+pybind11_opencv_numpy/ad25cba@3rdparty/unstable<span color="gray">#3435930de75b4483605705bcebb4185c:61a36fcc074a8d2f18b8685f8b0784fd0cc2a3a2</span>
+tclap/1.2.1@3rdparty/stable<span color="gray">#4e16bfe43ad96310a4de63dc7c320c88:c1d62b66cda2853039c9ace202152e7a45544752</span>
+werkzeug/3.0.1@pypi/stable<span color="gray">#86c94ab5fb379e4c09b7145b700331ed:4aa00e4c92acf416b5c630a020396821e497072a</span>
+]

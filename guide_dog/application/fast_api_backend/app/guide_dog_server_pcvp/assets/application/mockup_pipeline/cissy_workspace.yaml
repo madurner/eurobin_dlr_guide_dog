@@ -1,0 +1,11 @@
+config:
+  generators: VirtualRunEnv, ln_env, ln_paths
+  process_manager:
+    start_command: ln_manager -c manager.lnc
+    requires:
+      - links_and_nodes_manager/[^2.6]@common/stable
+    requires_from_all: .*ln_msgdef
+
+processes:
+  !include
+  - cissy_config/pcvp_processes.inc.yaml

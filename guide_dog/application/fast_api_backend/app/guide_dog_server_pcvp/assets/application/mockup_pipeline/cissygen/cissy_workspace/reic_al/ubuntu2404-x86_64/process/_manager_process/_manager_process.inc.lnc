@@ -1,0 +1,26 @@
+template _manager_process_gen
+add environment: PATH=/volume/conan_cache/reic_al/.conan2/p/links3e442feaecb49/p/bin:/volume/conan_cache/reic_al/.conan2/p/links11a4a06ea486a/p/bin:/volume/conan_cache/reic_al/.conan2/p/procpc4b894f4e3426/p/bin:/volume/conan_cache/reic_al/.conan2/p/links57c911f2f0e36/p/bin:/volume/conan_cache/reic_al/.conan2/p/links229e186df6db1/p/bin:/volume/conan_cache/reic_al/.conan2/p/links2653006da8edf/p/bin:/volume/conan_cache/reic_al/.conan2/p/links2653006da8edf/p/bin:/volume/conan_cache/reic_al/.conan2/p/links229e186df6db1/p/bin:/volume/conan_cache/reic_al/.conan2/p/links57c911f2f0e36/p/bin:/volume/conan_cache/reic_al/.conan2/p/links3e442feaecb49/p/bin:/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin
+add environment: PYTHONPATH=/volume/conan_cache/reic_al/.conan2/p/links229e186df6db1/p/lib/python/site-packages:/volume/conan_cache/reic_al/.conan2/p/links57c911f2f0e36/p/lib/python/site-packages:/volume/conan_cache/reic_al/.conan2/p/links3e442feaecb49/p/lib/python/site-packages
+add environment: LN_DAEMON_START=. /etc/profile && /opt/rmc-build-tools/any/cissy2/bin/linux/cissy run  -w None -p links_and_nodes_runtime/2.8.2@common/stable ln_daemon
+add environment: LD_LIBRARY_PATH=/volume/conan_cache/reic_al/.conan2/p/links3e442feaecb49/p/lib:/volume/conan_cache/reic_al/.conan2/p/procpc4b894f4e3426/p/lib:/volume/conan_cache/reic_al/.conan2/p/links57c911f2f0e36/p/lib:/volume/conan_cache/reic_al/.conan2/p/liblib459dcf8618a3/p/lib:/volume/conan_cache/reic_al/.conan2/p/links229e186df6db1/p/lib:/volume/conan_cache/reic_al/.conan2/p/liblib459dcf8618a3/p/lib
+add environment: DYLD_LIBRARY_PATH=/volume/conan_cache/reic_al/.conan2/p/links3e442feaecb49/p/lib:/volume/conan_cache/reic_al/.conan2/p/procpc4b894f4e3426/p/lib:/volume/conan_cache/reic_al/.conan2/p/links57c911f2f0e36/p/lib:/volume/conan_cache/reic_al/.conan2/p/liblib459dcf8618a3/p/lib:/volume/conan_cache/reic_al/.conan2/p/links229e186df6db1/p/lib
+add environment: LN_MESSAGE_DEFINITION_DIRS=/volume/conan_cache/reic_al/.conan2/p/links593b0d3fea288/p/message_definitions
+add flags: use_execvpe
+add environment: CONAN_HOME=/volume/conan_cache/reic_al/.conan2
+node: localhost
+description: [Deployed: 2026-06-19 15:48:20
+Cissy workspace process name: _manager_process
+Requirements:
+<span color="teal"><b>boost_python/1.83.0</b> platform</span>.
+<span color="teal"><b>pivy/0.6.5</b> platform</span>.
+<span color="teal"><b>python3-dist/2.2.1</b> platform</span>.
+liblinks_and_nodes/2.8.2@common/stable<span color="gray">#04ee05bd07b8501eb6248a7a60cc3a9e:b65027df6dd2d08e73d58f6badbadab7aead8534</span>
+libstring_util/1.3.0@common/stable<span color="gray">#5fac0a1a038f0a81b7778145551dd5c6:84c2475eceab6188870f3b57ef6abf7c0e56fde9</span>
+links_and_nodes_base_python/2.8.2@common/stable<span color="gray">#a844a24caff80bf4e3f67ede10d6e8db:ef2e43f23b493882583f3c9d44ca3639ab630492</span>
+links_and_nodes_cissy_helper/1.0.6@common/stable<span color="gray">#df1c2a5d210b12125fb1ce6a71c6f06e:da39a3ee5e6b4b0d3255bfef95601890afd80709</span>
+links_and_nodes_ln_msgdef/2.8.2@common/stable<span color="gray">#6792a09b72766ea44af8b93c61f2ba12:da39a3ee5e6b4b0d3255bfef95601890afd80709</span>
+links_and_nodes_manager/2.8.2@common/stable<span color="gray">#c6da9e1ec48ed4e9e735a70b660018c8:4e9fa1ed817bfd3ebf70185b677949b2f25efe3d</span>
+links_and_nodes_python/2.8.2@common/stable<span color="gray">#51f9323f0cd532cd7be12800d952da81:6b8fea37a4ce6a4ccb9a10124f4c28c1b5e68502</span>
+links_and_nodes_runtime/2.8.2@common/stable<span color="gray">#a03bbc5ddaa700ea0a874521e719bdd3:f71d866748c1d2706e3ee91efb20bdaaa9e4b813</span>
+procps/3.3.15@3rdparty/stable<span color="gray">#b460d5c880daedb736a23d2e18d4d926:aec8f1f3e924aa3cdd9d03da2a02930da140348f</span>
+]

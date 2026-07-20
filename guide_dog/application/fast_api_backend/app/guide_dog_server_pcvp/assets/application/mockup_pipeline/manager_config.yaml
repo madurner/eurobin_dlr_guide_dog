@@ -1,0 +1,55 @@
+manager_config_version: 3.0.0
+modules:
+  yolov7_pcvp:
+    ln_node_name: yolov7_pcvp
+  dense_pose_pcvp:
+    ln_node_name: dense_pose_pcvp
+  m3t_refiner_pcvp:
+    ln_node_name: m3t_refiner_pcvp
+  guide_dog_server_pcvp:
+    ln_node_name: guide_dog_server_pcvp
+  flask_server_pcvp:
+    ln_node_name: flask_server_pcvp
+
+flow_gates:
+  sync_img:
+    type: synchronize
+    slots:
+      color_img: guide_dog_server_pcvp.color_image_from_client->color_img
+
+connections:
+  yolov7_pcvp:
+    object_detection:
+      color_image:
+        from: sync_img -> color_img
+  dense_pose_pcvp:
+    pose_estimation:
+      color_image:
+        from: sync_img -> color_img
+      bounding_boxes:
+        from: yolov7_pcvp.object_detection -> bounding_boxes
+  m3t_refiner_pcvp:
+    object_refiner_color:
+      ~policies:
+        - if_not_responsive: drop
+      color_image:
+        from: sync_img -> color_img
+      poses:
+        from: dense_pose_pcvp.pose_estimation -> poses
+  guide_dog_server_pcvp:
+    detected_pose_image:
+        overlay:
+            from: m3t_refiner_pcvp.object_refiner_color -> overlay
+        poses:
+            from: m3t_refiner_pcvp.object_refiner_color -> refined_poses
+  flask_server_pcvp:
+    flask:
+      ~policies:
+        - if_not_responsive: drop
+      image:
+        from: m3t_refiner_pcvp.object_refiner_color -> overlay
+    bounding_boxes:
+      ~policies:
+        - if_not_responsive: drop
+      bounding_boxes:
+        from: yolov7_pcvp.object_detection -> bounding_boxes

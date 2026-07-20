@@ -1,0 +1,8 @@
+traced_model_ycb_objects:
+  state_dict_path: "/volume/projects/project_semsa/vision_db/trained_models/ycbv/yolov7/yolov7-e6e-ycbv_1280_bs4/weights/best.pt"
+  image_crop_size: 1280
+  det_threshold: 0.7
+  nms_iou_threshold: 0.6
+  trace: True
+  nms_class_agnostic: False
+  test_time_augmentation: True
